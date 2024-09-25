@@ -6,7 +6,8 @@ dotenv.config();
 const userRoutes = require('./router/userRouters');
 const authRoutes = require('./router/authRouters');
 const cors = require('cors');
-
+const https = require('https');
+const fs = require('fs');
 
 app.use(cors());
 
@@ -23,6 +24,12 @@ app.use(authRoutes);
 
 app.get('/test',(req,res) =>{res.status(200).send()});
 
-app.listen(process.env.PORT, () => {
-    console.log(`server running at http://localhost:${process.env.PORT}`)
-});
+// app.listen(process.env.PORT, () => {
+//     console.log(`server running at http://localhost:${process.env.PORT}`)
+// });
+
+https.createServer({key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+  }, app).listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}...`);
+  });
