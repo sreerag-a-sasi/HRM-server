@@ -7,6 +7,7 @@ const userRoutes = require('./router/userRouters');
 const authRoutes = require('./router/authRouters');
 const cors = require('cors');
 
+
 app.use(cors());
 
 //database connection
@@ -20,6 +21,7 @@ app.use(userRoutes);
 //authRoutes
 app.use(authRoutes);
 
+app.get('/test',(req,res) =>{res.status(200).send()});
 
 app.listen(process.env.PORT, () => {
     console.log(`server running at http://localhost:${process.env.PORT}`)
