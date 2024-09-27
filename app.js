@@ -31,5 +31,5 @@ app.get('/test',(req,res) =>{res.status(200).send()});
 https.createServer({key: fs.readFileSync('key.pem'),
     cert: fs.readFileSync('cert.pem'),
   }, app).listen(process.env.PORT, () => {
-    console.log(`Listening on port http://13.233.4.160:${process.env.PORT}...`);
+    console.log(`Listening on port https://13.233.4.160:${process.env.PORT}...`);
   });
